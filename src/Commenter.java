@@ -9,7 +9,7 @@ public class Commenter {
 	public void comment(AuthHelper helper, Submission s, String youtubeLink) throws NetworkException, ApiException{
 		RedditClient redditClient = helper.getRedditClient();
 		AccountManager am = new AccountManager(redditClient);
-		am.reply(s,"[View on YouTube]("+youtubeLink+")");
+		am.reply(s,"[View on YouTube](https://www.youtube.com/watch?v="+youtubeLink+")");
 	}
 
 }

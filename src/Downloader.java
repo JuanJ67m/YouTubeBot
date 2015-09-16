@@ -8,7 +8,7 @@ public class Downloader {
 
 	public void downloadVideo(String link) throws IOException {
 		URL url = new URL(link);
-		File file = new File("C:\\Users\\ashwi\\workspace2\\YouTubeBot\\src\\video.mp4");
+		File file = new File("C:\\YTBDownloads\\video.mp4");
 		FileUtils.copyURLToFile(url, file);
 	}
 

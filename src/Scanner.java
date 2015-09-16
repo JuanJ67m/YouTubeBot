@@ -16,7 +16,7 @@ public class Scanner {
 	public ArrayList<String> scanReddit(AuthHelper helper, ArrayList<String> links) throws NetworkException, OAuthException {
 		RedditClient redditClient = helper.getRedditClient();
 		SubredditPaginator doto = new SubredditPaginator(redditClient,"dota2");
-		doto.setLimit(50);                    
+		doto.setLimit(100);                    
 		doto.setTimePeriod(TimePeriod.ALL);
 		doto.setSorting(Sorting.NEW); 
 		Listing<Submission> submissions = doto.next();

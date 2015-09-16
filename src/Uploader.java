@@ -10,6 +10,8 @@ import com.google.api.services.youtube.model.VideoSnippet;
 import com.google.api.services.youtube.model.VideoStatus;
 import com.google.common.collect.Lists;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +56,8 @@ public class Uploader {
         try {
             // Authorize the request.
             Credential credential = Authorizer.authorize(scopes, "uploadvideo");
-
+            File file = new File("C:\\YTBDownloads\\video.mp4");
+            FileInputStream fis = new FileInputStream(file);
             // This object is used to make YouTube Data API requests.
             youtube = new YouTube.Builder(Authorizer.HTTP_TRANSPORT, Authorizer.JSON_FACTORY, credential).setApplicationName(
                     "youtube-cmdline-uploadvideo-sample").build();
@@ -93,9 +96,9 @@ public class Uploader {
             // Add the completed snippet object to the video resource.
             videoObjectDefiningMetadata.setSnippet(snippet);
 
-            InputStreamContent mediaContent = new InputStreamContent(VIDEO_FILE_FORMAT,
-                    Uploader.class.getResourceAsStream(SAMPLE_VIDEO_FILENAME));
-
+            //InputStreamContent mediaContent = new InputStreamContent(VIDEO_FILE_FORMAT,
+                    //Uploader.class.getResourceAsStream(SAMPLE_VIDEO_FILENAME));
+            InputStreamContent mediaContent = new InputStreamContent(VIDEO_FILE_FORMAT,fis);
             // Insert the video. The command sends three arguments. The first
             // specifies which information the API request is setting and which
             // information the API response should return. The second argument
@@ -151,6 +154,9 @@ public class Uploader {
             System.out.println("  - Tags: " + returnedVideo.getSnippet().getTags());
             System.out.println("  - Privacy Status: " + returnedVideo.getStatus().getPrivacyStatus());
             System.out.println("  - Video Count: " + returnedVideo.getStatistics().getViewCount());
+            //RandomAccessFile raf = new RandomAccessFile(file,"rwd");
+            //raf.setLength(0);
+            //raf.close();
             
         } catch (GoogleJsonResponseException e) {
             System.err.println("GoogleJsonResponseException code: " + e.getDetails().getCode() + " : "

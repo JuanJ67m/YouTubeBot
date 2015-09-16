@@ -28,7 +28,7 @@ public class YouTubeBot implements Runnable {
         }
     }
 
-	public static void main(String[] args) throws IOException, NetworkException, ApiException {
+	public static void main(String[] args) throws IOException, NetworkException, ApiException, InterruptedException {
 		in=new BufferedReader(new InputStreamReader(System.in));
 		Thread t = new Thread(new YouTubeBot());
         t.start();
